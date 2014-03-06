@@ -1,0 +1,10 @@
+.idea/
+target/
+*.iml
+.classpath
+.project
+.settings
+**/repository
+**/repository.xml
+**/derby.log
+.~*

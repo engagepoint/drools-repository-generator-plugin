@@ -1,0 +1,81 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.engagepoint.plugins</groupId>
+                <artifactId>drools-repository-generator-plugin</artifactId>
+                <version>${version}</version>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate-repository</goal>
+                        </goals>
+                        <configuration>
+
+                            <!-- optional parameter -->
+                            <targetRepositoryFile>${project.build.directory}/repository_export.xml
+                            </targetRepositoryFile>
+
+                            <!-- optional parameter -->
+                            <modelDirectory>${project.build.directory}/some_directory</modelDirectory>
+
+                            <!-- optional parameter
+                                        If this parameter is absent then the search will take place on java classpath
+                                        If this option is present then the search will take place on file system
+                                   -->
+                            <packagesDirectory>${project.build.directory}/classes</packagesDirectory>
+
+                            <processingPackagesRecursively>true</processingPackagesRecursively>
+                            <packages4Processing>
+                                <com.test>com.test</com.test>
+                            </packages4Processing>
+
+                            <buildVersion>${project.version}</buildVersion>
+                            <buildDate>${maven.build.timestamp}</buildDate>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.engagepoint.plugins</groupId>
+                <artifactId>drools-repository-generator-plugin</artifactId>
+                <version>${version}</version>
+                <executions>
+                    <execution>
+                        <id>Generate DRL from XLS and DRT</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>generate-from-template</goal>
+                        </goals>
+                        <configuration>
+                            <globalBaseDirPath>${basedir}/src/main/resources</globalBaseDirPath>
+                            <packages>
+                                <package>
+                                    <packageName>some.package</packageName>
+                                    <generatedPath>/generated</generatedPath>
+                                    <templatesSheetMappings>
+                                        <templatesSheetMapping>
+                                            <spreadsheetPath>${some.path}/input.xls</spreadsheetPath>
+                                            <templatesPath>${some.path}/templates</templatesPath>
+                                            <items>
+                                                <item>
+                                                    <worksheetName>Some name</worksheetName>
+                                                    <drtFileName>some_input.drt</drtFileName>
+                                                    <agendaGroupName>some.agenda.group</agendaGroupName>
+                                                </item>
+                                            </items>
+                                        </templatesSheetMapping>
+                                    </templatesSheetMappings>
+                                </package>
+                            </packages>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
