@@ -4,7 +4,7 @@
 
     <groupId>com.engagepoint.plugins</groupId>
     <artifactId>drools-repository-generator-plugin</artifactId>
-    <version>1.0-M1</version>
+    <version>1.0-M2-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
     <name>drools-repository-generator-plugin</name>
     <url>http://www.engagepoint.com</url>
